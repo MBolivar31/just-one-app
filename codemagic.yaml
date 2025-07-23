@@ -1,0 +1,21 @@
+workflows:
+  just-one-workflow:
+    name: Just One APK Build
+    max_build_duration: 15
+    environment:
+      flutter: stable
+      vars:
+        ANDROID_BUILD_MODE: release
+    scripts:
+      - name: Instalar dependencias
+        script: |
+          flutter pub get
+      - name: Construir APK
+        script: |
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+    publishing:
+      email:
+        recipients:
+          - tu-correo@ejemplo.com  # Puedes ponerlo o dejarlo en blanco
